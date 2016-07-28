@@ -12,7 +12,7 @@ using namespace std;
 class showAvto {
 private:
 	string number; //тех.номер машины
-	string info;//буфер для считевания с файла
+	string info;//буфер для считывания с файла
 	vector<string> infoVector;
 	bool searchСar; //фиксирует найден ли автомобиль
 public:
@@ -22,8 +22,8 @@ public:
 		searchСar = false;
 	}
 	void showAvtoByNumber() {
-		ifstream fin("allcars.txt");// открытие для чтения
-		ofstream fout("info_оf_сars.txt", ios_base::out | ios_base::trunc);//открытие для записи
+		ifstream fin("info_about_allcars.txt");// открытие для чтения
+		ofstream fout("output_info_оf_сars.txt", ios_base::out | ios_base::trunc);//открытие для записи
 		if (!fin.is_open() || !fout.is_open())
 			cout << "Файл не может быть открыт!\n";
 		else
@@ -60,6 +60,66 @@ public:
 	}
 };
 
+class carMaintenance {  //обслуживание автомобиля
+private:
+	string number; //тех.номер машины
+	int mileage; // пробег
+	string info;//буфер для считывания с файла
+	vector<string> infoVector; //считываем файл у вектор
+public:
+	carMaintenance() {
+		number = "";
+		mileage = 0;
+		info = "";
+	}
+	void maintenance() {
+		cout << "Введите номер автомобиля: ";
+		cin >> number; //ниже мы будем искать номер авто в файле info_about_allcars.txt
+		ifstream fin("info_about_allcars.txt");// открытие для чтения
+		if (!fin.is_open())
+			cout << "Файл не может быть открыт!\n";
+		else
+		{
+			do {
+				getline(fin, info);
+				infoVector.push_back(info);
+			} while (info != ""); //скопировали файл в вектор
+			for (int i = 0; i < infoVector.size(); i++) //ищим номер у векторе (в файле info_about_allcars.txt)
+			{
+				if (infoVector[i] == number)
+					cout << "Есть такой номер" << endl;  //это для проверки
+				// тут нужно реализовать условие выхода если найден номер машины в файле
+				//
+			}
+		}
+				
+		/**/ // выше реализуем поиск номера автообиля
+		/**/ // ниже у нас будет вывод в файл необходимых мер по ТО
+		cout << "Какой пробег у автомобиля ?" << endl;
+		cout << "Ввод пробега: ";
+		cin >> mileage;
+		if (mileage <= 0 || mileage > 500000) // сначала сделаем правельный ввод
+		{									  // но проверки на ввод строки я не делал
+			while (mileage <= 0 || mileage > 500000) {
+				cout << "Такого пробега не может быть !!!" << endl;
+				cout << "Повторите ввод_ : ";
+				cin >> mileage;
+			}
+			system("cls");
+		}
+		
+		//ofstream fout("output_info_aboutTOCar.txt", ios_base::out | ios_base::trunc);//открытие для записи
+		//if (!fout.is_open())
+		//	cout << "Файл не может быть открыт!\n";
+		//else {
+		//		
+		//	}
+		//}
+
+	}
+
+
+};
 
 
 int main()
@@ -85,16 +145,18 @@ int main()
 		system("cls");
 	}
 	case 1: {
-			showAvto avto;
-			avto.showAvtoByNumber();
-			break;
+		showAvto avto;
+		avto.showAvtoByNumber();
+		break;
 			}
 	case 2: {
-			// добавить ф-ю проверки проведения ТО
-			break;
+		
+		break;
 			}
 	case 3: {
-			break;
+		carMaintenance avto;
+		avto.maintenance();
+		break;
 			}
 		}
 	
