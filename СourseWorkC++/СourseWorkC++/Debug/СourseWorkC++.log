@@ -1,1 +1,3 @@
-﻿  СourseWorkC++.vcxproj -> C:\Users\Администратор\Desktop\GIT\СourseWorkC++\Debug\СourseWorkC++.exe
+﻿  СourseWorkC++.cpp
+c:\users\администратор\desktop\git\сourseworkc++\сourseworkc++\сourseworkc++.cpp(204): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  СourseWorkC++.vcxproj -> C:\Users\Администратор\Desktop\GIT\СourseWorkC++\Debug\СourseWorkC++.exe
